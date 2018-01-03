@@ -1,3 +1,8 @@
+h1 {
+    color: black;
+    text-align: center;
+}
+
 h3 {
     color: black;
     text-align: center;
@@ -71,4 +76,13 @@ input[type="file"] {
 	background : linear-gradient(top, #31fa1e 0%, #30ab00 100%);
 	filter : progid:DXImageTransform.Microsoft.gradient( startColorstr='#31fa1e', endColorstr='#30ab00',GradientType=0 );
     cursor: pointer;
+}
+
+
+#wrapper {
+  display: flex; justify-content: center; align-items: center;
+}
+
+#flexcenter {
+  flex-basis: 10px; 
 }

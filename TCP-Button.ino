@@ -53,6 +53,10 @@ void setup() {
   HTTPUpdateConnect();
 }
 
+void serveindex(){
+  server.send ( 200, "text/html", IndexPage() );
+}
+
 void HTTPUpdateConnect() {  
   httpUpdater.setup(&server);
 
@@ -68,6 +72,7 @@ void HTTPUpdateConnect() {
   );
   server.on("/off", HTTP_GET, httpoff);                 // Call the 'httpoff' function when a GET request is made to URI "/off"
   server.on("/on", HTTP_GET, httpon);                 // Call the 'httpon' function when a GET request is made to URI "/on"
+  server.on("/", HTTP_GET, serveindex);
   server.onNotFound([]() {                              // If the client requests any URI
     if (!handleFileRead(server.uri()))                  // send it if it exists
       server.send(404, "text/plain", "404: Not Found"); // otherwise, respond with a 404 (Not Found) error
@@ -92,7 +97,7 @@ void HTTPUpdateConnect() {
 
 bool handleFileRead(String path){  // send the right file to the client (if it exists)
   Serial.println("handleFileRead: " + path);
-  if(path.endsWith("/")) path += "index.html";           // If a folder is requested, send the index file
+//  if(path.endsWith("/")) path += "index.html";           // If a folder is requested, send the index file
   String contentType = getContentType(path);             // Get the MIME type
   String pathWithGz = path + ".gz";
   if(SPIFFS.exists(pathWithGz) || SPIFFS.exists(path)){  // If the file exists, either as a compressed archive, or normal
@@ -147,12 +152,16 @@ String getContentType(String filename){
 }
 
 void httpoff() {                          // If a GET request is made to URI /off
+  ledState = !ledState;
+  digitalWrite(LED_BUILTIN,ledState);
   switchoff();                              // Turn Light Off
   server.sendHeader("Location","/");        // Add a header to respond with a new location for the browser to go to the home page again
   server.send(303);                         // Send it back to the browser with an HTTP status 303 (See Other) to redirect
 }
 
 void httpon() {                          // If a GET request is made to URI /on
+  ledState = !ledState;
+  digitalWrite(LED_BUILTIN,ledState);
   switchon();                              // Turn Light On
   server.sendHeader("Location","/");        // Add a header to respond with a new location for the browser to go to the home page again
   server.send(303);                         // Send it back to the browser with an HTTP status 303 (See Other) to redirect
@@ -312,4 +321,27 @@ void loop() {
   
 }
 
-
+String IndexPage(){
+  String page = "<html lang='en'><head><meta charset='utf-8'>";
+  page += "<link rel='stylesheet' href='site.css'><title>";
+  page += ButtonName;
+  page += " Button Controller</title></head><body>";
+  page += "<div class='main'>";
+  page +=   "<div class='header'>";
+  page +=     "<img src='/logo-trans.png' class='headerimg'>";
+  page +=   "</div>";
+  page +=   "<div class='left'>";
+  page +=     "<br>&nbsp;<h1>";
+  page +=     ButtonName;
+  page +=     ": Button Controller</h1><br>";
+  page +=     "<div id='wrapper'>";
+  page +=     "<div><form action='/on'><input type='submit' class='btn-style' value='Light On' /></form></div>";
+  page +=     "<div id='flexcenter'>&nbsp</div>";
+  page +=     "<div><form action='/off'><input type='submit' class='btn-style' value='Light Off' /></form></div></div>";
+  page +=     "<h3>Device Maintenance</h3>";
+  page +=     "<a href='/update'>Upgrade Programming</a><br>";
+  page +=     "<a href='/upload'>Upload File to Storage</a><br>&nbsp;";
+  page += "</div></div>";
+  page += "</body></html>";
+  return page;
+}
