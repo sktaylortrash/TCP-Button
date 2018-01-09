@@ -1,0 +1,36 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>TCPLightingWebInterface Button</title>
+  <link rel="stylesheet" href="site.css">
+  <script src="/w3.js"></script>
+ </head>
+
+<body>
+  <div class="main">
+    <div class="header">
+	  <img src="/logo-trans.png" class="headerimg">
+    </div>
+    <div class="left">
+      <h3>The Button is rebooting</h3>
+    </div>
+    <center><div id="counter" style="font-size:30px">10</div></center>
+    <br>
+      <script>
+        setInterval(function() {
+            var div = document.querySelector("#counter");
+            var count = div.textContent * 1 - 1;
+            div.textContent = count;
+            if (count <= 0) {
+                window.location.href="/";
+            }
+        }, 1000);
+      </script>
+      <div w3-include-html='footer.html'></div>
+ </div>
+ <script>w3.includeHTML();</script>
+</body>
+</html>
+

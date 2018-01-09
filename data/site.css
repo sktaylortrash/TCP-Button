@@ -25,6 +25,7 @@ h3 {
 	margin-left:10px;
 }
 
+
 .left {
 	margin-left:10px;
 }
@@ -79,10 +80,44 @@ input[type="file"] {
 }
 
 
+.footer {
+	background-color:black;
+	width:560px;
+	height:40px;
+	display: flex; justify-content: center; align-items: center;
+}
+
 #wrapper {
-  display: flex; justify-content: center; align-items: center;
+	display: flex; justify-content: center; align-items: center;
 }
 
 #flexcenter {
   flex-basis: 10px; 
+}
+
+#flexcenter2 {
+	flex-basis: 20px; 
+  }
+  
+dt {
+    float: left;
+    width: 30%;
+    text-align: right;
+    padding: .25em;
+    clear: left;
+}
+dd {
+    float: left;
+    width: 60%;
+    padding: .25em 0;
+}
+dl:after {content:"";display:table;clear:both;}
+
+a {
+	color: white;
+}
+#vertcenter {
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
 }

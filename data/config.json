@@ -1,0 +1,30 @@
+{
+  "ssid": "Wi-Fi-Name",
+  "password": "Wifi-Password",
+  "localhost": "Switch-Hostname",
+  "fwUrlBase": "http://lighting.local/firmware/",
+  "ip": [
+    172,
+    16,
+    33,
+    154
+  ],
+"gw": [
+    172,
+    16,
+    33,
+    253
+  ],
+  "sn": [
+    255,
+    255,
+    255,
+    0
+  ],
+  "ns": [
+    172,
+    16,
+    33,
+    4
+  ]
+}

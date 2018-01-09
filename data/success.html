@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <title>TCPLightingWebInterface Button</title>
   <link rel="stylesheet" href="site.css">
+  <script src="/w3.js"></script>
  </head>
 
 <body>
@@ -13,13 +14,11 @@
 	  <img src="/logo-trans.png" class="headerimg">
     </div>
     <div class="left">
-	  <br>&nbsp;
       <h3>File Uploaded Successfully</h3>
-      <a href="/">Return to main page</a><br>
-      <a href="/upload">Upload another file</a>
-	  <br>&nbsp;
     </div>
- </div>
+    <div w3-include-html='footer.html'></div>
+    </div>
+    <script>w3.includeHTML();</script>
 </body>
 </html>
 
