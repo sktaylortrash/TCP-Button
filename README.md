@@ -2,8 +2,8 @@
 
 > Controls lights managed with https://github.com/bren1818/TCPLightingWebInterface
 
-`This Arduino Sketch is dependant on libraries from https://github.com/thomasfredericks/Bounce2/wiki`
-
+All test were performed with a ModeMCU development board but should be reproducable on most any cucuit built with an esp8266. The NodeMCU board was chosen as it already has a 5v --> 3.3v convertor and breadboad sized pinouts attached
+![](https://github.com/sktaylortrash/TCP-Button/raw/master/Images/NodeMCUPNG-small.png)
 
 The settings are defined by two JSON files:
 
@@ -41,3 +41,4 @@ The settings are defined by two JSON files:
 }
 ```
 
+`This Arduino Sketch is dependant on libraries from https://github.com/thomasfredericks/Bounce2/wiki`
