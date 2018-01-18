@@ -2,7 +2,6 @@
   "ssid": "Wi-Fi-Name",
   "password": "Wifi-Password",
   "localhost": "Switch-Hostname",
-  "fwUrlBase": "http://lighting.local/firmware/",
   "ip": [
     172,
     16,

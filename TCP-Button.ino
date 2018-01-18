@@ -623,6 +623,7 @@ bool loadtcpConfig() {
   sphost = json["tcphost"].as<String>();
   spport = json["port"];
   spNdMdl = json["NdMdl"].as<String>();
+  spfwUrlBase = json["fwUrlBase"].as<String>();
   
   return true;
 }
@@ -652,7 +653,6 @@ bool loadConfig() {
   spssid = json["ssid"].as<String>();
   sppassword = json["password"].as<String>();
   splocalhost = json["localhost"].as<String>();
-  spfwUrlBase = json["fwUrlBase"].as<String>();
  
   //IP Address
   spip[0]=json["ip"][0];

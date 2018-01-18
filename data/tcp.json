@@ -9,5 +9,6 @@
   "dvcnm2": "Lamp",
   "dvctyp2": "Device",
   "dvcid2": 216773570733536747,
-  "fngrprnt": "2d 55 4b dc 65 fa a7 4a a7 d0 28 52 03 85 6e 74 11 75 f0 6f"  
+  "fngrprnt": "2d 55 4b dc 65 fa a7 4a a7 d0 28 52 03 85 6e 74 11 75 f0 6f",
+  "fwUrlBase": "http://lighting.local/firmware/"
 }
