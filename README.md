@@ -2,7 +2,7 @@
 
 > Controls lights managed with https://github.com/bren1818/TCPLightingWebInterface
 
-All test were performed with a ModeMCU development board but should be reproducable on most any cucuit built with an esp8266. The NodeMCU board was chosen as it already has a 5v --> 3.3v convertor and breadboad sized pinouts attached
+All testing was performed with NodeMCU development boards V2 but should be reproducable on any esp8266 based board. The NodeMCU board was chosen as it already has a 5v --> 3.3v convertor and breadboad sized pinouts attached
 ![Imgur](https://i.imgur.com/NAeLlJM.png)
 
 ***
