@@ -11,7 +11,7 @@
 #include <SimpleTimer.h>
 #include "variables.h"
 
-const int FW_VERSION = 1046;
+const int FW_VERSION = 1047;
 //Button GPIO Definitions
 #define BUTTON_PIN1 D7
 #define BUTTON_PIN2 D6
@@ -693,7 +693,7 @@ void setup() {
   loadConfig();    
   connectWiFi();
   HTTPUpdateConnect();
-  timer.setInterval(600000, checkForUpdates);
+  //timer.setInterval(600000, checkForUpdates);
   if (spNdMdl == "2BTN") {
     timer.setInterval(60000,  GetStates );
   }
