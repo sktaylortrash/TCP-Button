@@ -11,7 +11,7 @@
 #include <SimpleTimer.h>
 #include "variables.h"
 
-const int FW_VERSION = 1047;
+const int FW_VERSION = 1049;
 //Button GPIO Definitions
 #define BUTTON_PIN1 D7
 #define BUTTON_PIN2 D6
@@ -73,6 +73,7 @@ void HTTPUpdateConnect() {
   server.on("/info", HTTP_GET, serveinfo);
   server.on("/reboot", HTTP_GET, reboot);
   server.on("/", HTTP_GET, serveindex);
+  server.on("/check", HTTP_GET, httpcheck);
   server.onNotFound([]() {                              // If the client requests any URI
     if (!handleFileRead(server.uri()))                  // send it if it exists
       server.send(404, "text/plain", "404: Not Found"); // otherwise, respond with a 404 (Not Found) error
@@ -143,6 +144,12 @@ String getContentType(String filename){
   else if(filename.endsWith(".zip")) return "application/x-zip";
   else if(filename.endsWith(".gz")) return "application/x-gzip";
   return "text/plain";
+}
+
+void httpcheck() {                           // If a GET request is made to URI /check
+  checkForUpdates();
+  server.sendHeader("Location","/");        // Add a header to respond with a new location for the browser to go to the home page again
+  server.send(303);                         // Send it back to the browser with an HTTP status 303 (See Other) to redirect
 }
 
 void httpoff1() {                           // If a GET request is made to URI /off1
@@ -623,7 +630,6 @@ bool loadtcpConfig() {
   sphost = json["tcphost"].as<String>();
   spport = json["port"];
   spNdMdl = json["NdMdl"].as<String>();
-  spfwUrlBase = json["fwUrlBase"].as<String>();
   
   return true;
 }
@@ -653,6 +659,7 @@ bool loadConfig() {
   spssid = json["ssid"].as<String>();
   sppassword = json["password"].as<String>();
   splocalhost = json["localhost"].as<String>();
+  spfwUrlBase = json["fwUrlBase"].as<String>();
  
   //IP Address
   spip[0]=json["ip"][0];
@@ -693,7 +700,7 @@ void setup() {
   loadConfig();    
   connectWiFi();
   HTTPUpdateConnect();
-  //timer.setInterval(600000, checkForUpdates);
+  timer.setInterval(600000, checkForUpdates);
   if (spNdMdl == "2BTN") {
     timer.setInterval(60000,  GetStates );
   }
@@ -738,4 +745,3 @@ void loop() {
       }
    }
 }
-
